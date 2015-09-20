@@ -10,7 +10,17 @@
 </head>
 <body>
   <script type="text/x-handlebars" data-template-name='application'>
-    <div class="navbar"></div>
+    <div class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">Flint and Flame</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li>{{#link-to 'index'}}Home{{/link-to}}</li>
+          <li>{{#link-to 'about'}}About Us{{/link-to}}</li>
+        </ul>
+      </div>
+    </div>
     <div class="container">{{outlet}}</div>
     <footer class="container"></footer>
   </script>
