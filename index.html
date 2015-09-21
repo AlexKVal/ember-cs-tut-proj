@@ -6,6 +6,10 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Courgette", type="text/css">
 
+  <style media="screen">
+    a { cursor: pointer; }
+  </style>
+
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/handlebars/handlebars.min.js"></script>
   <script src="bower_components/ember/ember.debug.js"></script>
@@ -52,24 +56,27 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name='products'>
-    <h1>Products</h1>
-    <ul class="list-unstyled col-md-8">
-    {{#each model as |product|}}
-      <li class="row">
-        {{#link-to 'product' product}}
-        <img src={{product.image}} class="img-thumbnail col-md-5">
-        <div class="col-md-7">
-          <h2>{{product.title}}</h2>
-          <p class="product-description">{{product.description}}</p>
-          <p><button class="btn btn-success">Buy for ${{product.price}}</button></p>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="list-group">
+          {{#each model as |product|}}
+            {{#link-to 'products.product' product class='list-group-item'}}
+              {{product.title}}
+            {{/link-to}}
+          {{/each}}
         </div>
-        {{/link-to}}
-      </li>
-    {{/each}}
-    </ul>
+      </div>
+      <div class="col-sm-9">
+        {{outlet}}
+      </div>
+    </div>
   </script>
 
-  <script type="text/x-handlebars" data-template-name='product'>
+  <script type="text/x-handlebars" data-template-name='products/index'>
+    <p class="text-muted">Choose a product from those on the left!</p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name='products/product'>
     <div class="row">
       <div class="col-md-7">
         <h2>{{model.title}}</h2>
