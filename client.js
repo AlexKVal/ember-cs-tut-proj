@@ -2,39 +2,33 @@ var App = Ember.Application.create({
   LOG_TRANSITIONS: true
 });
 
-App.PRODUCTS = [
-  {
-    title: 'Kingling',
-    price: 249,
-    description: 'Easily...',
-    isOnSale: false,
-    image: 'kindling.png'
-  },
-  {
-    title: 'Flint',
-    price: 99,
-    description: 'Flint is a hard, sedimentary cryptocrystalline form of the mineral quartz, categorized as a variety of chert.',
-    isOnSale: true,
-    image: 'flint.png'
-  }
-];
+App.ApplicationSerializer = DS.JSONSerializer.extend();
+
+App.Product = DS.Model.extend({
+  title: DS.attr('string'),
+  price: DS.attr('number'),
+  description: DS.attr('string'),
+  isOnSale: DS.attr('boolean'),
+  image: DS.attr('string')
+});
+
 
 App.Router.map(function() {
   this.route('about', {path: 'aboutus'}); // path '#/aboutus', route 'about'
   this.route('products', {path: 'items'}, function() {
-    this.route('product', {path: ':title'});
+    this.route('product', {path: ':product_id'});
   });
 });
 
 App.ProductsRoute = Ember.Route.extend({
   model: function() {
-    return App.PRODUCTS;
+    return this.store.findAll('product');
   }
 });
 
 App.ProductRoute = Ember.Route.extend({
   model: function(params) {
-    var result = App.PRODUCTS.findBy('title', params.title);
+    var result = this.store.find('product', params.product_id);
     console.log(result);
     return result;
   }

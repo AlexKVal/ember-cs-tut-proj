@@ -1,7 +1,7 @@
 # Ember CS learning project
 
 ```
-> bower install ember ember-data jquery handlebars bootstrap
-> python -m SimpleHTTPServer 8000
+> bower install ember ember-data jquery handlebars bootstrap express
+> node server.js
 > open http://localhost:8000
 ```
