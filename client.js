@@ -26,13 +26,14 @@ App.ProductsRoute = Ember.Route.extend({
   }
 });
 
-App.ProductRoute = Ember.Route.extend({
-  model: function(params) {
-    var result = this.store.find('product', params.product_id);
-    console.log(result);
-    return result;
-  }
-});
+// this is the default behavior
+// App.ProductRoute = Ember.Route.extend({
+//   model: function(params) {
+//     var result = this.store.find('product', params.product_id);
+//     console.log(result);
+//     return result;
+//   }
+// });
 
 App.IndexController = Ember.Controller.extend({
   counter: function() {
