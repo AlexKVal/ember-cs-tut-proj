@@ -19,17 +19,21 @@
 <body>
 
   <script type="text/x-handlebars" data-template-name='application'>
-    <div class="navbar navbar-inverse">
+    <header class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
           {{#link-to 'index' class='navbar-brand'}}Flint and Flame{{/link-to}}
         </div>
         <ul class="nav navbar-nav navbar-right">
-          <li>{{#link-to 'index'}}Home{{/link-to}}</li>
-          <li>{{#link-to 'about'}}About Us{{/link-to}}</li>
+          {{#link-to 'index' tagName='li'}}
+            <a href={{view.href}}>Home</a>
+          {{/link-to}}
+          {{#link-to 'about' tagName='li'}}
+            <a href={{view.href}}>About Us</a>
+          {{/link-to}}
         </ul>
       </div>
-    </div>
+    </header>
     <div class="container">{{outlet}}</div>
     <footer class="container"></footer>
   </script>
