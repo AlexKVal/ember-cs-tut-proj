@@ -92,6 +92,12 @@
       <ul>
         {{#each model.reviews as |review|}}
           <li>{{review.text}}</li>
+        {{else}}
+          <li>
+            <p class="text-muted">
+              <em>No reviews yet. Be the first to write one!</em>
+            </p>
+          </li>
         {{/each}}
       </ul>
     </div>

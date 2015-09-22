@@ -45,7 +45,12 @@ var reviews = [
 ];
 
 app.get('/products', function(req, res) {
-  res.json(products);
+  var order = req.query.order;
+  if (order) {
+    res.json(_.sortBy(products, order));
+  } else {
+    res.json(products);
+  }
 })
 
 app.get('/reviews', function(req, res) {
