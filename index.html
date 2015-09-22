@@ -87,6 +87,14 @@
         <img src={{model.image}} class="img-thumbnail img-rounded">
       </div>
     </div>
+    <div class="row">
+      <h3>Reviews</h3>
+      <ul>
+        {{#each model.reviews as |review|}}
+          <li>{{review.text}}</li>
+        {{/each}}
+      </ul>
+    </div>
   </script>
 
 </body>
