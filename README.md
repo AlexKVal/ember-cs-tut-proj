@@ -5,3 +5,4 @@
 > nodemon server.js
 > open http://localhost:8000
 ```
+and navigate to `Products`
