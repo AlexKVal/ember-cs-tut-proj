@@ -135,9 +135,11 @@
   <script type="text/x-handlebars" data-template-name='components/product-details'>
     <img src={{product.image}} class="tmg-thumbnail">
     <h2>{{product.title}}</h2>
+    {{#if product.isOnSale}}
     <span class="label label-warning">
       {{#link-to 'products.onsale'}}On Sale{{/link-to}}
     </span>
+    {{/if}}
     <p class="product-description">{{product.description}}</p>
     <p>
       {{#link-to 'products.product' product class='btn btn-success'}}
