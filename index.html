@@ -144,6 +144,9 @@
         Buy for ${{product.price}}
       {{/link-to}}
     </p>
+    {{#if hasReviews}}
+    <p class="text-muted">Read all reviews ({{reviewsCount}}).</p>
+    {{/if}}
   </script>
 
 </body>
