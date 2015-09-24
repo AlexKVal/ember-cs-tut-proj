@@ -96,6 +96,16 @@
       </div>
     </div>
     {{partial 'reviews'}}
+    <div class="new-review">
+      <h3>Review {{model.title}}</h3>
+      {{#if text}}
+      <p class="text-muted">{{text}}</p>
+      {{/if}}
+      {{textarea valueBinding=text cols="80" rows="6"}}
+      <p>
+        <button {{action 'createReview' model}} class="btn-primary">Review</button>
+      </p>
+    </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name='products/onsale'>

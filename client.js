@@ -15,12 +15,13 @@ App.Product = DS.Model.extend({
 
 App.Review = DS.Model.extend({
   text: DS.attr('string'),
+  product: DS.belongsTo('product'),
   reviewedAt: DS.attr('date')
 });
 
 App.Router.map(function() {
   this.route('about', {path: 'aboutus'}); // path '#/aboutus', route 'about'
-  this.route('products', {path: 'items'}, function() {
+  this.route('products', function() {
     this.route('product', {path: ':product_id'});
     this.route('onsale');
   });
@@ -58,5 +59,26 @@ App.ProductDetailsComponent = Ember.Component.extend({
 App.IndexRoute = Ember.Route.extend({
   model: function() {
     return this.store.findAll('product');
+  }
+});
+
+App.ProductsProductController = Ember.Controller.extend({
+  text: '',
+  actions: {
+    createReview: function(product) {
+      console.log('product.id', product.id);
+
+      var review = this.store.createRecord('review', {
+        text: this.get('text'),
+        product: product,
+        reviewedAt: new Date()
+      })
+
+      var that = this;
+      review.save().then(function(review) {
+        console.log('review.id', review.id);
+        that.set('text', '');
+      })
+    }
   }
 });

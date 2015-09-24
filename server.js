@@ -1,8 +1,8 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var _ = require('lodash');
 
 var app = express();
-
 
 var products = [
   { id: 1,
@@ -30,6 +30,7 @@ var products = [
     reviews: []
   }
 ];
+var productsLastId = 3;
 
 var reviews = [
   {
@@ -43,6 +44,7 @@ var reviews = [
     text: 'Not the brightest flame, but warm!'
   }
 ];
+var reviewsLastId = 101;
 
 app.get('/products', function(req, res) {
   var order = req.query.order;
@@ -55,6 +57,21 @@ app.get('/products', function(req, res) {
 
 app.get('/reviews', function(req, res) {
   res.json(reviews);
+})
+
+app.post('/reviews', bodyParser.json({ type: 'application/vnd.api+json' }), function(req, res) {
+  var newReview = req.body;
+  newReview.id = ++reviewsLastId;
+
+  console.log('newReview:', newReview);
+  reviews.push(newReview);
+
+  // var product = _.find(products, 'id', +newReview.productId);
+  var product = _.find(products, 'id', +newReview.product);
+  product.reviews.push(newReview.id);
+  console.log('product', product);
+
+  res.status(201).json(newReview);
 })
 
 app.get('/reviews/:id', function(req, res) {
