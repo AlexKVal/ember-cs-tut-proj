@@ -95,20 +95,7 @@
         <img src={{model.image}} class="img-thumbnail img-rounded">
       </div>
     </div>
-    <div class="row">
-      <h3>Reviews</h3>
-      <ul>
-        {{#each model.reviews as |review|}}
-          <li>{{review.text}}</li>
-        {{else}}
-          <li>
-            <p class="text-muted">
-              <em>No reviews yet. Be the first to write one!</em>
-            </p>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
+    {{partial 'reviews'}}
   </script>
 
   <script type="text/x-handlebars" data-template-name='products/onsale'>
@@ -149,6 +136,23 @@
     {{#if hasReviews}}
     <p class="text-muted">Read all reviews ({{reviewsCount}}).</p>
     {{/if}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name='_reviews'>
+    <div class="row">
+      <h3>Reviews</h3>
+      <ul>
+        {{#each model.reviews as |review|}}
+          <li>{{review.text}}</li>
+        {{else}}
+          <li>
+            <p class="text-muted">
+              <em>No reviews yet. Be the first to write one!</em>
+            </p>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
   </script>
 
 </body>
