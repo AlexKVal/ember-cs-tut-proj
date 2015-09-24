@@ -22,6 +22,7 @@ App.Router.map(function() {
   this.route('about', {path: 'aboutus'}); // path '#/aboutus', route 'about'
   this.route('products', {path: 'items'}, function() {
     this.route('product', {path: ':product_id'});
+    this.route('onsale');
   });
 });
 
@@ -41,10 +42,14 @@ App.ProductsRoute = Ember.Route.extend({
 //   }
 // });
 
-App.IndexController = Ember.Controller.extend({
-  counter: function() {
-    return +new Date();
-  }.property(),
-  src: '/image.jpg',
-  alt: 'This is the image'
+App.ProductsOnsaleRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('products').filterBy('isOnSale');
+  }
+});
+
+App.IndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.findAll('product');
+  }
 });

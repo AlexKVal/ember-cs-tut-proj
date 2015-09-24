@@ -38,6 +38,9 @@
           {{#link-to 'products' tagName='li'}}
             <a href={{view.href}}>Products</a>
           {{/link-to}}
+          {{#link-to 'products.onsale' tagName='li'}}
+            <a href={{view.href}}>On Sale</a>
+          {{/link-to}}
         </ul>
       </div>
     </header>
@@ -47,8 +50,29 @@
 
   <script type="text/x-handlebars" data-template-name='index'>
     <h1>Welcome to The Flint & Flame!</h1>
-    <p>{{counter}}</p>
-    <img src={{src}} alt={{alt}}>
+    <div class="body-content">
+      <div class="row">
+        <ul class="list-unstyled">
+          {{#each model as |product|}}
+          <li class="row">
+            <img src={{product.image}} class="tmg-thumbnail col-sm-5">
+            <div class="col-sm-7">
+              <h2>{{product.title}}</h2>
+              <span class="label label-warning">
+                {{#link-to 'products.onsale'}}On Sale{{/link-to}}
+              </span>
+              <p class="product-description">{{product.description}}</p>
+              <p>
+                {{#link-to 'products.product' product class='btn btn-success'}}
+                  Buy for ${{product.price}}
+                {{/link-to}}
+              </p>
+            </div>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name='about'>
@@ -101,6 +125,26 @@
         {{/each}}
       </ul>
     </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name='products/onsale'>
+    <h1>On Sale Products</h1>
+    <ul class="list-unstyled">
+      {{#each model as |product|}}
+      <li class="row">
+        <img src={{product.image}} class="tmg-thumbnail col-sm-5">
+        <div class="col-sm-7">
+          <h2>{{product.title}}</h2>
+          <p class="product-description">{{product.description}}</p>
+          <p>
+            {{#link-to 'products.product' product class='btn btn-success'}}
+              Buy for ${{product.price}}
+            {{/link-to}}
+          </p>
+        </div>
+      </li>
+      {{/each}}
+    </ul>
   </script>
 
 </body>
